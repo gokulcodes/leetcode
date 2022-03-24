@@ -5,9 +5,8 @@ public:
         int i = 0, j = people.size() - 1, cnt = 0;
         
         while(i <= j){
-            int sum = people[i] + people[j];
             
-            if(sum <= limit) i++;
+            if(people[i] + people[j] <= limit) i++;
             
             j--;
             cnt++;
