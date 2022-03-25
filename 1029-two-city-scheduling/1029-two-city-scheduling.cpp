@@ -12,9 +12,10 @@ public:
         
         int n = costs.size() / 2, minCost = 0;
         
-        for(int i = 0; i < n; i++) minCost += acity[i][0];
-        
-        for(int i = n; i < acity.size(); i++) minCost += acity[i][1];
+        for(int i = 0; i < n; i++) {
+            minCost += acity[i][0];
+            minCost += acity[n + i][1];
+        }
         
         return minCost;
     }
