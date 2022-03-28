@@ -34,7 +34,6 @@ public:
             if(nums[nums.size() - 1] < nums[nums.size() - 2]) i = nums.size() - 1;
         }
         
-        cout << i << endl;
         if(i == -1) return binarySearch(0, nums.size() - 1, nums, target);
         return binarySearch(0, i, nums, target) || binarySearch(i, nums.size() - 1, nums, target);
     }
