@@ -8,8 +8,10 @@ public:
         color[node] = 1;
         for(auto x : graph[node]){
             if(color[x] == 2) continue;
-            if(color[x] == 1 || !dfs(x, color, graph))
-                return false;
+            if(color[x] == 1 || !dfs(x, color, graph)){
+                cout << x << " " << color[x] << endl;
+                return false;                
+            }
         }
         
         color[node] = 2;
@@ -22,9 +24,12 @@ public:
         int n = graph.size();
         vector<int> color(n, 0), ans;
         
-        for(int i = 0; i < n; i++)
+        for(int i = 0; i < n; i++){
+            // cout << i << " " << dfs(i, color, graph) << endl;
             if(dfs(i, color, graph))
                 ans.push_back(i);
+        }
+            
         
         return ans;
     }
