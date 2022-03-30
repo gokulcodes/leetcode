@@ -2,6 +2,17 @@ class Solution {
 public:
     int r = 0;
     
+    bool binarySearch(int s, int e, vector<vector<int>>& matrix, int target, int r){
+        if(s > e) return false;
+        int md = (s + e) / 2;
+        if(matrix[r][md] == target) return true;
+        
+        if(matrix[r][md] > target)
+            return binarySearch(s, md - 1, matrix, target, r);
+        
+        return binarySearch(md + 1, e, matrix, target, r);
+    }
+    
     void findRowIndex(int s, int e, vector<vector<int>>& matrix, int target){
         if(s > e) return;
         
@@ -21,20 +32,9 @@ public:
         }
     }
     
-    bool binarySearch(int s, int e, vector<vector<int>>& matrix, int target, int r){
-        if(s > e) return false;
-        int md = (s + e) / 2;
-        if(matrix[r][md] == target) return true;
-        
-        if(matrix[r][md] > target)
-            return binarySearch(s, md - 1, matrix, target, r);
-        
-        return binarySearch(md + 1, e, matrix, target, r);
-    }
-    
     bool searchMatrix(vector<vector<int>>& matrix, int target) {
         findRowIndex(0, matrix.size() - 1, matrix, target);
-        cout << r << endl;
+        
         return binarySearch(0, matrix[r].size() - 1, matrix, target, r);
     }
 };
