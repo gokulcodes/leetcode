@@ -9,7 +9,7 @@ public:
         for(auto x : graph[node]){
             if(color[x] == 2) continue;
             if(color[x] == 1 || !dfs(x, color, graph)){
-                cout << x << " " << color[x] << endl;
+                // cout << x << " " << color[x] << endl;
                 return false;                
             }
         }
@@ -18,7 +18,6 @@ public:
 
         return true;
     }
-    
     
     vector<int> eventualSafeNodes(vector<vector<int>>& graph) {
         int n = graph.size();
