@@ -37,7 +37,6 @@ public:
             
             st.push(newS + repeat);
             
-            // cout << newS + repeat << endl;
         }
         
         while(!st.empty()){
