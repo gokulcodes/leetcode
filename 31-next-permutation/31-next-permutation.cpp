@@ -27,11 +27,7 @@ public:
             }else r = md - 1;
         }
         
-        cout << j << endl;
-        
         swap(nums[j], nums[i]);
-        
-        for(auto x : nums) cout << x << " ";
         
         sort(nums.begin() + i + 1, nums.end());
         
