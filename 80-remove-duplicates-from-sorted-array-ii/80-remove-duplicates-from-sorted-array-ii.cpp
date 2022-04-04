@@ -25,10 +25,6 @@ public:
             int cnt = it1 - it;
             
             if(cnt > 2){
-//                 cout << nums[i] << " " << last << endl;
-                
-//                 for(auto x : nums) cout << x << " ";
-//                 cout << endl;
                 
                 int s = it1;
                 for(int j = it + 2; j < n && s < n; j++, s++){
