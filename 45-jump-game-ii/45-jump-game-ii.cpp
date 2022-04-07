@@ -6,11 +6,10 @@ public:
         
         while(ptr > 0){
             int curr = ptr;
-            for(int i = ptr; i >= 0; i--){
-                if(nums[i] + i >= ptr){
-                    curr = i;
-                }
-            }
+            
+            for(int i = ptr; i >= 0; i--)
+                if(nums[i] + i >= ptr) curr = i;
+            
             ptr = curr;
             min_steps++;
         }
