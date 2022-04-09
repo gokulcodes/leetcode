@@ -1,3 +1,9 @@
+struct comparator{
+    bool operator()(pair<int, int> i, pair<int, int> j){
+        return i.second < j.second;
+    }
+};
+
 class Solution {
 public:
     vector<int> topKFrequent(vector<int>& nums, int k) {
@@ -7,18 +13,15 @@ public:
             freq[x]++;
         }
         
-        vector<pair<int, int>> cnt;
+        priority_queue<pair<int, int>, vector<pair<int, int>>, comparator> q;
         for(auto x : freq){
-            cnt.push_back({x.first, x.second});
+            q.push({x.first, x.second});
         }
         
-        sort(cnt.begin(), cnt.end(), [&](auto a, auto b){
-            return a.second > b.second; 
-        });
-        
         vector<int> kfreq;
-        for(int i = 0; i < cnt.size() && k > 0; i++, k--){
-            kfreq.push_back(cnt[i].first);
+        while(!q.empty() && k--){
+            kfreq.push_back(q.top().first);
+            q.pop();
         }
         
         return kfreq;
