@@ -1,9 +1,9 @@
 class Solution {
 public:
     vector<vector<int>> shiftGrid(vector<vector<int>>& grid, int k) {
-        // if(grid.size() == 1 && grid[0].size() == 1) return grid;
 
         int n = grid.size(), m = grid[0].size();
+        
         
         while(k--){
             int next_el = INT_MIN, prev_el = INT_MIN;
@@ -35,11 +35,6 @@ public:
                 grid[0][0] = prev_el;
             else grid[0][0] = next_el;
         }
-        
-        // for(auto x : grid){
-        //     for(auto y : x) cout << y << " ";
-        //     cout<< endl;
-        // }
         
         return grid;
         
