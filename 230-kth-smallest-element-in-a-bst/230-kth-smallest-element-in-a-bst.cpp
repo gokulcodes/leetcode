@@ -21,22 +21,29 @@ public:
     
     priority_queue<int, vector<int>, comparator> q;
     
+    int itr = 0, last = -1;
+    
     void dfs(TreeNode* root){
         if(root == NULL) return;
         dfs(root->left);
-        q.push(root->val);
+        itr--;
+        if(itr == 0)
+            last = root->val;
+        // q.push(root->val);
         dfs(root->right);
     }
     
     int kthSmallest(TreeNode* root, int k) {
+        itr = k;
+
         dfs(root);
-        
-        int last = -1;
-        while(k > 0){
-            last = q.top();
-            q.pop();
-            k--;
-        }
+                
+        // int last = -1;
+        // while(k > 0){
+        //     last = q.top();
+        //     q.pop();
+        //     k--;
+        // }
         
         return last;
     }
