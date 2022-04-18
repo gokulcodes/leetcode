@@ -10,16 +10,8 @@
  * };
  */
 
-struct comparator{
-    bool operator()(int x, int y){
-        return x > y;
-    }
-};
-
 class Solution {
 public:
-    
-    priority_queue<int, vector<int>, comparator> q;
     
     int itr = 0, last = -1;
     
@@ -29,22 +21,14 @@ public:
         itr--;
         if(itr == 0)
             last = root->val;
-        // q.push(root->val);
         dfs(root->right);
     }
     
     int kthSmallest(TreeNode* root, int k) {
-        itr = k;
+        this->itr = k;
 
         dfs(root);
-                
-        // int last = -1;
-        // while(k > 0){
-        //     last = q.top();
-        //     q.pop();
-        //     k--;
-        // }
         
-        return last;
+        return this->last;
     }
 };
