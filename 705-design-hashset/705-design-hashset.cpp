@@ -1,23 +1,32 @@
 class MyHashSet {
 public:
-    vector<int> arr;
+    vector<list<int>> arr;
+    int s;
     MyHashSet() {
-        
+        s = 10;
+        arr.resize(s);
+    }
+    
+    list<int>::iterator search(int key){
+        int i = key % s;
+        return find(arr[i].begin(), arr[i].end(), key);
     }
     
     void add(int key) {
-        auto it = find(arr.begin(), arr.end(), key);
-        if(it == arr.end()) arr.push_back(key);
+        if(contains(key)) return;
+        int i = key % s;
+        arr[i].push_back(key);
     }
     
     void remove(int key) {
-        auto it = find(arr.begin(), arr.end(), key);
-        if(it != arr.end()) arr[distance(arr.begin(), it)] = -1;
+        if(!contains(key)) return;
+        int i = key % s;
+        arr[i].erase(search(key));
     }
     
     bool contains(int key) {
-        auto it = find(arr.begin(), arr.end(), key);
-        if(it != arr.end()) return true;
+        int i = key % s;
+        if(search(key) != arr[i].end()) return true;
         return false;
     }
 };
