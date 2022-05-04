@@ -6,7 +6,7 @@ public:
     map<int, deque<int>> m;
     
     int maxOperations(vector<int>& nums, int k) {
-        sort(nums.begin(), nums.end());
+        // sort(nums.begin(), nums.end());
         
         for(int i = 0; i < nums.size(); i++){
             m[nums[i]].push_back(i);
