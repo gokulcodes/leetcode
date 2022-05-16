@@ -32,7 +32,7 @@ public:
                     
                     if(grid[dx][dy] == 0){
                         
-                        q.push({{dx, dy}, prev == INT_MAX ? 1 : prev + 1});
+                        q.push({{dx, dy}, prev + 1});
                         
                         prev = max(q.front().second, prev);
                         
