@@ -8,19 +8,14 @@ public:
         vector<int> prefix(n);
         
         for(int i = 0; i < n; i++) {
-            if(i == 0) prefix[i] = nums[i];
-            else prefix[i] = nums[i] + prefix[i - 1];
+            prefix[i] = nums[i] + (i - 1 >= 0 ? prefix[i - 1] : 0);
         }
         
         for(i = 0; i < n; i++){
             if(ind.find(nums[i]) != ind.end()){
                 ans = max(ans, i - j);
                 
-                // if(i - j == ans){
-                    if(j - 1 >= 0)
-                        res = max(res, prefix[i - 1] - prefix[j - 1]);
-                    else res = max(res, prefix[i - 1]);
-                // }
+                res = max(res, prefix[i - 1] - (j - 1 >= 0 ? prefix[j - 1] : 0));
                 
                 j = max(j, ind[nums[i]] + 1);
             }
