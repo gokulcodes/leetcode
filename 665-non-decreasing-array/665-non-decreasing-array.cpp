@@ -3,33 +3,22 @@ public:
     bool checkPossibility(vector<int>& nums) {
         
         int n = nums.size();
+        bool changed = false;
         
-        for(int i = 0; i < n; i++){
+        for(int i = 0; i < n - 1; i++){
             
-            int last = INT_MAX;
-            bool sorted = true;
+            if(nums[i] <= nums[i + 1]) continue;
             
-            for(int j = 0; j < n; j++){
-                if(i == j) continue;
-                
-                if(last == INT_MAX) {
-                    last = nums[j];
-                    continue;
-                }
-                
-                if(nums[j] - last < 0) {
-                    sorted = false;
-                    break;
-                }
-                
-                last = nums[j];
-            }
+            if(changed) return false;
             
-            if(sorted) return true;
+            if(i == 0 or nums[i - 1] <= nums[i + 1])
+                nums[i] = nums[i + 1];
+            else nums[i + 1] = nums[i];
             
+            changed = true;
         }
         
         
-        return false;
+        return true;
     }
 };
