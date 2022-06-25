@@ -1,19 +1,15 @@
 class SeatManager {
 public:
-    vector<bool> vis;
     priority_queue<int, vector<int>, greater<int>> pq;
     
     SeatManager(int n) {
-        vis.resize(n + 1);
-        for(int i = 1; i <= n; i++) vis[i] = true, pq.push(i);
+        for(int i = 1; i <= n; i++) pq.push(i);
     }
     
     int reserve() {
         
         int top = pq.top();
         pq.pop();
-        
-        vis[top] = false;
         
         return top;
         
