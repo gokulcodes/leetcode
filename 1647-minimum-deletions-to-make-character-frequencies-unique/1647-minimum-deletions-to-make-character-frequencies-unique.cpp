@@ -1,13 +1,17 @@
 class Solution {
 public:
+    
+    int min(int a, int b){
+        return a >= b ? b : a;
+    }
+    
     int minDeletions(string s) {
         map<char, int> mp;
+        map<int, int> freq;
+        
         for(auto x : s) mp[x]++;
         
-        map<int, int> freq;
-        for(auto x : mp){
-            freq[x.second]++;
-        }
+        for(auto x : mp) freq[x.second]++;
         
         int res = 0;
         
