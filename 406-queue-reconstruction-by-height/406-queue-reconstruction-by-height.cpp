@@ -23,18 +23,11 @@ public:
             
             res.push_back(people[i]);
             
-            // cout << i << " " << j << " " << org << endl;
-            
             vector<int> temp = people[i];
             
             for(int k = i; k >= j and k - 1 >= 0; k--) res[k] = res[k - 1];
             
             res[j] = temp;
-            
-            // for(auto x : res){
-            //     cout << x[0] << " " << x[1] << " | ";
-            // }
-            // cout << endl;
             
         }
         
