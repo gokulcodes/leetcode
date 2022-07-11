@@ -20,7 +20,7 @@ public:
         
         while(!q.empty()){
             
-            vector<int> level;
+            int last = -1;
             int cnt = q.size();
             
             while(cnt--){
@@ -36,11 +36,11 @@ public:
                     q.push(top->right);
                 }
                 
-                level.push_back(top->val);
+                last = top->val;
                 
             }
             
-            arr.push_back(level.back());
+            arr.push_back(last);
             
         }
         
