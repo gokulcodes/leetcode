@@ -13,31 +13,19 @@ class Solution {
 public:
     int sum = 0;
     
-    void dfs(TreeNode* root){
+    void dfs(TreeNode* root, int parent, int gp){
+        
         if(root == NULL) return;
         
-        if(root->val % 2 == 0){
-            TreeNode* temp = NULL;
-            if(root->left != NULL) temp = root->left;
-            if(temp and temp->left != NULL) sum += temp->left->val;
-            if(temp and temp->right != NULL) sum += temp->right->val;
-            
-            temp = NULL;
-            
-            if(root->right != NULL) temp = root->right;
-            if(temp and temp->left != NULL) sum += temp->left->val;
-            if(temp and temp->right != NULL) sum += temp->right->val;
-        }
+        if(gp % 2 == 0) sum += root->val;
         
-        dfs(root->left);
-        dfs(root->right);
+        dfs(root->left, root->val, parent);
+        dfs(root->right, root->val, parent);
         
     }
     
     int sumEvenGrandparent(TreeNode* root) {
-        dfs(root);
+        dfs(root, -1, -1);
         return sum;
     }
 };
-
-// 16 + 78 + 91 + 27 + 71 + 71
