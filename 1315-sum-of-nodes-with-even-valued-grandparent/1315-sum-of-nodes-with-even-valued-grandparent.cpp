@@ -17,21 +17,17 @@ public:
         if(root == NULL) return;
         
         if(root->val % 2 == 0){
-            cout << root->val << endl;
             TreeNode* temp = NULL;
             if(root->left != NULL) temp = root->left;
-            if(temp and temp->left != NULL) sum += temp->left->val, cout << temp->left->val << " ";
-            if(temp and temp->right != NULL) sum += temp->right->val, cout << temp->right->val << " ";
-            
-            cout << " | ";
+            if(temp and temp->left != NULL) sum += temp->left->val;
+            if(temp and temp->right != NULL) sum += temp->right->val;
             
             temp = NULL;
             
             if(root->right != NULL) temp = root->right;
-            if(temp and temp->left != NULL) sum += temp->left->val, cout << temp->left->val << " ";
-            if(temp and temp->right != NULL) sum += temp->right->val, cout << temp->right->val << " ";
+            if(temp and temp->left != NULL) sum += temp->left->val;
+            if(temp and temp->right != NULL) sum += temp->right->val;
         }
-        cout << endl;
         
         dfs(root->left);
         dfs(root->right);
