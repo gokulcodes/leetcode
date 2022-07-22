@@ -18,13 +18,11 @@ public:
         
         int cnt = 0;
         
-        ListNode* tail = head;
+        ListNode* tail = node;
         while(tail->next != NULL){
-            if(tail->val >= x) cnt++;
             tail = tail->next;
+            if(tail->val >= x) cnt++;
         }
-        
-        if(tail->val >= x) cnt++;
         
         ListNode* itr = node;
         
