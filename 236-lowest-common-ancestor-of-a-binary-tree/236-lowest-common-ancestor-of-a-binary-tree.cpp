@@ -10,38 +10,28 @@
 class Solution {
 public:
     
-    bool pf = false, qf = false;
-    
-    void helper(TreeNode* root, int p, int q){
-        if(root == NULL) return;
-        
-        if(pf and qf) return;
-        
-        if(p == root->val) pf = true;
-        if(q == root->val) qf = true;
-        
-        helper(root->left, p, q);
-        helper(root->right, p, q);
-        
-    }
+    // bool left = 0, right = 0, mid = 0;
     
     TreeNode* res = NULL;
     
-    void dfs(TreeNode* root, int p, int q){
-        if(root == NULL) return;
+    bool dfs(TreeNode* root, int p, int q){
+        if(root == NULL) return 0;
         
-        helper(root, p, q);
+        bool left = dfs(root->left, p, q);
+        bool right = dfs(root->right, p, q);
         
-        if(pf and qf) {
-            res = new TreeNode(root->val);
+        bool mid = (root->val == p || root->val == q);
+        // cout << mid << " " <<  left  << " " << right << endl;
+        
+        if(mid + left + right >= 2){
+            res = root;
         }
         
-        pf = false, qf = false;
+        if(mid) return 1;
+        if(right) return 1;
+        if(left) return 1;
         
-        dfs(root->left, p, q);
-        dfs(root->right, p, q);
-        
-        return;
+        return 0;
     }
     
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
@@ -49,5 +39,3 @@ public:
         return res;
     }
 };
-
-// 6 2 0 4 3 6 8 7 9
