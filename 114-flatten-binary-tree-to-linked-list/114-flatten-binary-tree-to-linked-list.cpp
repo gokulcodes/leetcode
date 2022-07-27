@@ -9,6 +9,9 @@
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
+
+// O(N) Time | O(N) Space
+
 class Solution {
 public:
     
@@ -40,9 +43,7 @@ public:
         
         dfs(root);
         
-        TreeNode* node = buildTree(1);
-        
-        root->right = node;
+        root->right = buildTree(1);
         root->left = NULL;
         
     }
