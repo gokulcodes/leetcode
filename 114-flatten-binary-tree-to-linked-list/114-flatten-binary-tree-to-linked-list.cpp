@@ -40,9 +40,9 @@ public:
         
         dfs(root);
         
-        TreeNode* node = buildTree(0);
+        TreeNode* node = buildTree(1);
         
-        root->right = node->right;
+        root->right = node;
         root->left = NULL;
         
     }
