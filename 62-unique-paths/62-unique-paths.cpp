@@ -1,22 +1,6 @@
 class Solution {
 public:
     
-//     int recurse(int i, int j, int m, int n, vector<vector<int>>& dp){
-//         if(i == m - 1 and j == n - 1){
-//             return 1;
-//         }
-        
-//         if(i == m || j == m) return 0;
-        
-//         // if(dp[i][j]) return 1;
-        
-//         // dp[i][j] = 1;
-        
-//         // cout << i << " " << j << endl;
-        
-//         return recurse(i + 1, j, m, n, dp) + recurse(i, j + 1, m, n, dp);
-//     }
-    
     int uniquePaths(int m, int n) {
         vector<vector<int>> dp(m, vector<int>(n, 0));
         
@@ -32,13 +16,6 @@ public:
                 
             }
         }
-        
-        // for(auto x : dp){
-        //     for(auto y : x){
-        //         cout << y << " ";
-        //     }
-        //     cout << endl;
-        // }
         
         return dp[0][0];
     }
