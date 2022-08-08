@@ -11,6 +11,8 @@ public:
                     dp[i] = dp[j] + 1;
                 }
             }
+            // for(auto x : dp) cout << x << " ";
+            // cout << endl;
         }
         
         return *max_element(dp.begin(), dp.end());
