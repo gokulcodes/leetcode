@@ -25,15 +25,15 @@ public:
         return left and right;
     }
     
-    vector<int> sorted;
+    long long prev = LONG_MIN;
     
     bool dfs(TreeNode* root){
         if(root == NULL) return true;
         
         bool left = dfs(root->left);
 
-        if(sorted.size() > 0 and sorted.back() >= root->val) return false;
-        sorted.push_back(root->val);
+        if(prev >= root->val) return false;
+        prev = root->val;
         
         bool right = dfs(root->right);
         
