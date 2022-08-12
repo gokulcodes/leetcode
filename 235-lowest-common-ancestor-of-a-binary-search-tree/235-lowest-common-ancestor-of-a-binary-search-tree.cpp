@@ -12,19 +12,14 @@ class Solution {
 public:
     
     TreeNode* lca(TreeNode* root, TreeNode* p, TreeNode* q){
-        if(root == NULL) return NULL;
         
-        if(root->val >= p->val and root->val <= q->val) 
-            return root;
-        
-        TreeNode* left = NULL, *right = NULL;
         if(root->val > p->val and root->val > q->val)
-            left = lca(root->left, p, q);
+            return lca(root->left, p, q);
         
         if(root->val < p->val and root->val < q->val)
-            right = lca(root->right, p, q);
+            return lca(root->right, p, q);
         
-        return left != NULL ? left : right;
+        return root;
     }
     
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
