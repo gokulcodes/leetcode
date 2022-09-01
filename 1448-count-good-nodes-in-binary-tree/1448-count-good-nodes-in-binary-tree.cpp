@@ -12,25 +12,15 @@
 class Solution {
 public:
     
-    int cnt = 1;
-    void dfs(TreeNode* &root){
-        
-        if(root->left != NULL){
-            if(root->val <= root->left->val) cnt++;
-            root->left->val = max(root->val, root->left->val);
-            dfs(root->left);    
-        }
-        
-        if(root->right != NULL){
-            if(root->val <= root->right->val) cnt++;
-            root->right->val = max(root->val, root->right->val);
-            dfs(root->right);    
-        }
-        
+    int dfs(TreeNode* root, int mn){
+        if(root == NULL) return 0;
+        int res = root->val >= mn ? 1 : 0;
+        res += dfs(root->left, max(mn, root->val));
+        res += dfs(root->right, max(mn, root->val));
+        return res;
     }
     
     int goodNodes(TreeNode* root) {
-        dfs(root);
-        return cnt;
+        return dfs(root, INT_MIN);
     }
 };
