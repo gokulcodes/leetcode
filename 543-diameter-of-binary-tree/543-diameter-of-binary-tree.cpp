@@ -12,28 +12,19 @@
 class Solution {
 public:
     
-    int maxDepth(TreeNode* root){
+    int compute(TreeNode* root, int &mx){
         if(root == NULL) return 0;
-        return 1 + max(maxDepth(root->left), maxDepth(root->right));
-    }
-    
-    int res = INT_MIN;
-    
-    void diameter(TreeNode* root){
-        if(root == NULL) return;
-        int mx = maxDepth(root->left);
-        int mn = maxDepth(root->right);
         
-        res = max(res, mx + mn);
+        int lh = compute(root->left, mx);
+        int rh = compute(root->right, mx);
+        mx = max(mx, lh + rh);
         
-        diameter(root->left);
-        diameter(root->right);
-        
+        return 1 + max(lh, rh);
     }
     
     int diameterOfBinaryTree(TreeNode* root) {
-        diameter(root);
-        return res;
-        
+        int mx = INT_MIN;
+        compute(root, mx);
+        return mx;
     }
 };
