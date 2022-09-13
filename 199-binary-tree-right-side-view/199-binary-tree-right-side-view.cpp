@@ -11,44 +11,23 @@
  */
 class Solution {
 public:
-    vector<int> arr;
+    map<int, int> mp;
     
-    vector<int> bfs(TreeNode* root){
+    void preorder(TreeNode* root, int level){
+        if(root == NULL) return;
         
-        queue<TreeNode*> q;
-        q.push(root);
+        if(mp.find(level) == mp.end()) mp[level] = root->val;
         
-        while(!q.empty()){
-            
-            int last = -1;
-            int cnt = q.size();
-            
-            while(cnt--){
-                
-                TreeNode* top = q.front();
-                q.pop();
-                
-                if(top->left != NULL){
-                    q.push(top->left);
-                }
-                
-                if(top->right != NULL){
-                    q.push(top->right);
-                }
-                
-                last = top->val;
-                
-            }
-            
-            arr.push_back(last);
-            
-        }
-        
-        return arr;
+        preorder(root->right, level + 1);
+        preorder(root->left, level + 1);
     }
     
     vector<int> rightSideView(TreeNode* root) {
-        if(root == NULL) return {};
-        return bfs(root);
+        vector<int> res;
+        preorder(root, 0);
+        
+        for(auto x : mp) res.push_back(x.second);
+        
+        return res;
     }
 };
