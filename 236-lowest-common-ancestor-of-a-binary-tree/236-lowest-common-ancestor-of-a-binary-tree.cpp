@@ -10,18 +10,14 @@
 class Solution {
 public:
     TreeNode* lca(TreeNode* root, TreeNode* p, TreeNode* q){
-        if(root == NULL) return NULL;
-        
-        if(p->val == root->val) return p;
-        if(q->val == root->val) return q;
+        if(root == NULL || root == p || root == q) return root;
         
         TreeNode* left = lca(root->left, p, q);
         TreeNode* right = lca(root->right, p, q);
         
-        if(left and right and left->val == p->val and right->val == q->val) return root;
-        if(left and right and left->val == q->val and right->val == p->val) return root;
-        if(left and !right) return left;
-        if(!left and right) return right;
+        if(left == NULL) return right;
+        else if(right == NULL) return left;
+        else return root;
         
         return NULL;
         
