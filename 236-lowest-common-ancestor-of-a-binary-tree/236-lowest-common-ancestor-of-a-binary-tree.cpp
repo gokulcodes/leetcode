@@ -9,33 +9,25 @@
  */
 class Solution {
 public:
-    
-    // bool left = 0, right = 0, mid = 0;
-    
-    TreeNode* res = NULL;
-    
-    bool dfs(TreeNode* root, int p, int q){
-        if(root == NULL) return 0;
+    TreeNode* lca(TreeNode* root, TreeNode* p, TreeNode* q){
+        if(root == NULL) return NULL;
         
-        bool left = dfs(root->left, p, q);
-        bool right = dfs(root->right, p, q);
+        if(p->val == root->val) return p;
+        if(q->val == root->val) return q;
         
-        bool mid = (root->val == p || root->val == q);
-        // cout << mid << " " <<  left  << " " << right << endl;
+        TreeNode* left = lca(root->left, p, q);
+        TreeNode* right = lca(root->right, p, q);
         
-        if(mid + left + right >= 2){
-            res = root;
-        }
+        if(left and right and left->val == p->val and right->val == q->val) return root;
+        if(left and right and left->val == q->val and right->val == p->val) return root;
+        if(left and !right) return left;
+        if(!left and right) return right;
         
-        if(mid) return 1;
-        if(right) return 1;
-        if(left) return 1;
+        return NULL;
         
-        return 0;
     }
     
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
-        dfs(root, p->val, q->val);
-        return res;
+        return lca(root, p, q);
     }
 };
