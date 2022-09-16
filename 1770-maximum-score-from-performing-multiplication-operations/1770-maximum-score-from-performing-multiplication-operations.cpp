@@ -7,7 +7,7 @@ public:
         if(dp[i][start] != -1) return dp[i][start];
         
         int first = (mm[i] * nm[start]) + f(i + 1, start + 1, nm, mm, dp);
-        int last = (mm[i] * nm[(nm.size() - 1) - (i - start)]) + f(i + 1, start, nm, mm, dp);
+        int last = (mm[i] * nm[(nm.size() - 1) - i]) + f(i + 1, start, nm, mm, dp);
         
         return dp[i][start] = max(first, last); 
     }
